@@ -3,8 +3,9 @@ AD-SOYAD:Muhammet Eren Alptekin
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
 GUNLUK_HAYAT_ALGORITMASI
-ALGORITHM MükemmelOmletYap
 
+Mukemmel_Omlet_Yapma_Algorıtması
+BAŞLA
     // 1. Malzemeleri Hazırla
     INPUT yumurta_sayisi
     INPUT tuz_miktari
@@ -66,5 +67,4 @@ ALGORITHM MükemmelOmletYap
     // 11. Servis Et
     AL omlet FROM tava
     SERVİS_ET omlet WITH garnitür
-
-END ALGORITHM
+BİTİR

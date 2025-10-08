@@ -1,55 +1,70 @@
-Öğrenci No:250541044
-AD-SOYAD:Eren Bilge Koçak
-Mükemmel omlet yapma algoritması
+Öğrenci No:250541064
+AD-SOYAD:Muhammet Eren Alptekin
+
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
-BAŞLA
+GUNLUK_HAYAT_ALGORITMASI
+ALGORITHM MükemmelOmletYap
 
-1. MALZEMELER ← {yumurta, tuz, yağ, süt, tavada kullanılacak malzemeler}
-2. EKSİK_VAR_MI ← HAYIR
+    // 1. Malzemeleri Hazırla
+    INPUT yumurta_sayisi
+    INPUT tuz_miktari
+    INPUT süt_miktari
+    INPUT yağ_türü
+    INPUT yağ_miktari
+    INPUT isteğe_bağlı_malzemeler (peynir, mantar, biber, vs.)
 
-3. HER malzeme ∈ MALZEMELER için TEKRARLA
-      EĞER malzeme mevcut değilse
-          ÇIKTI malzeme + " eksik!"
-          EKSİK_VAR_MI ← EVET
-      SON
-   SON
+    // 2. Malzemeleri Kontrol Et
+    IF yumurta_sayisi < 2 THEN
+        PRINT "En az 2 yumurta kullanmalısınız."
+        EXIT
+    ENDIF
 
-4. EĞER EKSİK_VAR_MI = EVET ise
-       ÇIKTI "Omlet yapılamaz. Eksik malzemeleri tamamla."
-       DURDUR
-   SON
+    // 3. Yumurtaları Kır ve Karıştır
+    FOR i FROM 1 TO yumurta_sayisi DO
+        KIR yumurta[i] INTO karıştırma_kabı
+    ENDFOR
 
-5. KASE ← boş
-6. Kır(2-3 yumurta, KASE içine)
-7. EKLE (bir tutam tuz, biraz süt)
-8. ÇIRPMA_SAYISI ← 0
+    EKLE tuz_miktari TO karıştırma_kabı
+    EKLE süt_miktari TO karıştırma_kabı
 
-9. WHILE ÇIRPMA_SAYISI < 30 TEKRARLA
-       ÇIRP(KASE içindekiler)
-       ÇIRPMA_SAYISI ← ÇIRPMA_SAYISI + 1
-   SON
+    // 4. İsteğe Bağlı Malzemeleri Ekle
+    FOR EACH malzeme IN isteğe_bağlı_malzemeler DO
+        DOĞRA malzeme
+        EKLE malzeme TO karıştırma_kabı
+    ENDFOR
 
-10. TAVA ← Isıt
-11. EKLE (biraz yağ, TAVA içine)
-12. EĞER TAVA sıcak değilse
-        BEKLE 1 dakika
-        TEKRARLA 11. adım
-    SON
+    // 5. Karışımı Çırp
+    WHILE karışım_homojen DEĞİL DO
+        ÇIRP karıştırma_kabı
+    ENDWHILE
 
-13. DÖK (KASE içindekiler, TAVA içine)
+    // 6. Tavayı Hazırla
+    SEÇ tavayı (yapışmaz_tava)
+    EKLE yağ_türü VE yağ_miktari TO tava
+    ISIT tava ORTA_ATEŞTE
 
-14. PİŞME_DURUMU ← "çiğ"
+    // 7. Karışımı Tavaya Dök
+    DÖK karışım TO tava
 
-15. WHILE PİŞME_DURUMU ≠ "hazır" TEKRARLA
-        BEKLE 1 dakika
-        EĞER alt taraf kızardıysa
-            ÇEVİR omleti
-        SON
-        EĞER üst taraf da piştiyse
-            PİŞME_DURUMU ← "hazır"
-        SON
-   SON
+    // 8. Pişirme Süreci
+    WHILE omlet_altı_pişmedi DO
+        BEKLE 30 saniye
+        KONTROL et alt_kısmı
+    ENDWHILE
 
-16. ÇIKTI "Omlet hazır! Afiyet olsun :)"
+    // 9. Omleti Katla (isteğe bağlı)
+    IF omlet_katlanacak THEN
+        KATLA omlet
+    ENDIF
 
-BİTİR
+    // 10. Üst Kısmı Pişir
+    WHILE omlet_üstü_pişmedi DO
+        BEKLE 20 saniye
+        KONTROL et üst_kısmı
+    ENDWHILE
+
+    // 11. Servis Et
+    AL omlet FROM tava
+    SERVİS_ET omlet WITH garnitür
+
+END ALGORITHM

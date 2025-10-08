@@ -1,4 +1,49 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541064
+AD-SOYAD:Muhammet Eren Alptekin
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+ARABA_SURME_ALGORITMASI
+
+// 1. Başlangıç Kontrolleri
+INPUT anahtar_var_mi
+INPUT yakıt_durumu
+INPUT sürücü_emniyet_kemeri_takılı_mı
+
+  IF anahtar var == FALSE
+  PRİNT "Anahtar yok arabayı çalıştıramazsınız."
+  EXIT
+END IF
+
+IF yakıt_durumu <= 0
+  PRINT "yeterli yakıtınız yok, lütfen yakıt alınız."
+  EXİT
+END IF
+
+IF sürücü_emniyet_kemeri_takılı == FALSE
+  PRINT "lütfen emniyet kemerinizi takınız."
+  EXİT
+  END İF
+
+// 2.Aracı Çalıştır
+
+PRINT "araba çalıştırılıyor..."
+
+    // 3. Vites Kontrolü
+    INPUT vites_tipi // "manuel" veya "otomatık"
+
+  IF vites_tipi_manuel == TRUE 
+      BAS debriyaj
+      AYARLA vites
+      KALDIR el_freni
+  ELSE
+    AYARLA vites TO "D"
+    KALDIR el_freni
+  END İF
+
+// 4. Hareket ET
+      PRINT "araba hareket ediyor."
+      BAS gaz_pedali
+// 5. Sürüş Döngüsü
+WHİLE varıs_noktasına_ulaşılamadı DO
+    // 5.1 Trafik ve Yol Kontrol
+

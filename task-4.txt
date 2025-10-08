@@ -1,57 +1,58 @@
-Öğrenci No:250541044
-AD-SOYAD:Eren Bilge Koçak
-Renkleri karıştırarak hedef rengi elde etme
+Öğrenci No:250541064
+AD-SOYAD:Muhammet Eren Alptekin
+
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
-Başla
+PROBLEM_COZME_ALGORITMASI
 
-// 1. Giriş verilerini al
-Girdi: hedef_renk(R, G, B), mevcut_renkler = [renk1, renk2, ..., renkN]
-Çıkış: karışım_formülü (hangi renklerden ne kadar)
+Adıl_Pasta_Paylasımı_Algorıtması
 
-// 2. Renkleri normalize et (0-255 → 0-1 arası)
-Fonksiyon normalize(renk):
-    Dön (renk.R / 255, renk.G / 255, renk.B / 255)
+BAŞLA
+    // 1. Girdi al: kişi sayısı ve pasta boyutu
+    INPUT kisi_sayisi
+    INPUT pasta_boyutu // örneğin gram cinsinden
 
-hedef_renk_norm = normalize(hedef_renk)
-mevcut_renkler_norm = []
-Döngü renk içinde mevcut_renkler:
-    mevcut_renkler_norm += [normalize(renk)]
+    // 2. Pasta boyutunu ve kişi sayısını kontrol et
+    IF kisi_sayisi <= 0 THEN
+        PRINT "Geçerli bir kişi sayısı giriniz."
+        EXIT
+    END IF
 
-// 3. Karışım uzayını oluştur (böl ve fethet yaklaşımı)
-Fonksiyon karışım_oluştur(renkler, derinlik):
-    Eğer derinlik == 1:
-        Dön renkler
-    Aksi halde:
-        yeni_karışımlar = []
-        Döngü i = 0'dan uzunluk(renkler)-1:
-            Döngü j = i+1'dan uzunluk(renkler):
-                yeni_renk = ortalama(renkler[i], renkler[j])
-                yeni_karışımlar += [yeni_renk]
-        Dön karışım_oluştur(yeni_karışımlar, derinlik - 1)
+    IF pasta_boyutu <= 0 THEN
+        PRINT "Geçerli bir pasta boyutu giriniz."
+        EXIT
+    END IF
 
-karışım_kümesi = karışım_oluştur(mevcut_renkler_norm, maksimum_karışım_derinliği)
+    // 3. Her kişiye düşen eşit pasta miktarını hesapla
+    pay_miktari = pasta_boyutu / kisi_sayisi
 
-// 4. En yakın rengi bul (optimizasyon)
-Fonksiyon renk_mesafesi(r1, r2):
-    Dön kare_kök((r1.R - r2.R)^2 + (r1.G - r2.G)^2 + (r1.B - r2.B)^2)
+    // 4. Paylaşım listesi oluştur
+    paylasim_listesi = []
 
-minimum_mesafe = sonsuz
-en_iyi_karışım = null
+    // 5. Her kişiye sırayla pasta ver
+    FOR i FROM 1 TO kisi_sayisi DO
+        kişi = "Kişi_" + i
+        VER kişi'ye pay_miktari gram pasta
+        ADD (kişi, pay_miktari) TO paylasim_listesi
+    END FOR
 
-Döngü karışım içinde karışım_kümesi:
-    mesafe = renk_mesafesi(karışım, hedef_renk_norm)
-    Eğer mesafe < minimum_mesafe:
-        minimum_mesafe = mesafe
-        en_iyi_karışım = karışım
+    // 6. Artan pasta miktarını kontrol et
+    kalan_pasta = pasta_boyutu MOD kisi_sayisi
 
-// 5. Edge case kontrolü
-Eğer minimum_mesafe > tolerans_değeri:
-    yazdır("Hedef renge tam ulaşılamıyor, en yakın ton önerildi.")
-Eğer hedef_renk çok nötr (örneğin gri tonları) ise:
-    yazdır("Doygunluğu düşük renkler için özel karışım gerekebilir.")
+    IF kalan_pasta > 0 THEN
+        PRINT "Artan pasta miktarı: " + kalan_pasta + " gram."
+        // Strateji: Artanı rastgele veya sırayla kişilere dağıt
+        FOR i FROM 1 TO kalan_pasta DO
+            kişi_index = i MOD kisi_sayisi
+            kişi = "Kişi_" + (kişi_index + 1)
+            INCREMENT kişi'nin payı BY 1 gram
+            GÜNCELLE paylasim_listesi[kişi]
+        END FOR
+    END IF
 
-// 6. Sonuçları göster
-yazdır("Hedef renge en yakın karışım:")
-yazdır(en_iyi_karışım)
+    // 7. Sonuçları yazdır
+    PRINT "Adil pasta paylaşımı tamamlandı:"
+    FOR each kayıt IN paylasim_listesi DO
+        PRINT kayıt.kişi + " → " + kayıt.miktar + " gram"
+    END FOR
 
-Bitir
+BİTİR
